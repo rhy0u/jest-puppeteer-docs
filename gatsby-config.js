@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Smooth UI',
   },
   plugins: [
     {
@@ -8,18 +8,19 @@ module.exports = {
       options: {
         name: `pages`,
         path: `${__dirname}/src/pages/`,
-      },
-    },
-    {
-      resolve: `gatsby-mdx`,
-      options: {
-        extensions: ['.mdx', '.md'],
+        ignore: [`**/documentation/*`],
         defaultLayouts: {
-          default: require.resolve('./src/components/layout.js'),
+          default: require.resolve('./src/components/layouts/BaseLayout.js'),
         },
       },
     },
-    'gatsby-plugin-react-helmet',
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `doc`,
+        path: `${__dirname}/src/pages/documentation`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -27,22 +28,32 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        extensions: ['.mdx'],
+        defaultLayouts: {
+          default: require.resolve('./src/components/layouts/BaseLayout.js'),
+          doc: require.resolve('./src/components/layouts/DocLayout.js'),
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: 'gatsby-starter-default',
         short_name: 'starter',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#bd4932',
+        theme_color: '#bd4932',
         display: 'minimal-ui',
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+    'gatsby-transformer-remark',
+    'gatsby-plugin-resolve-src',
+    'gatsby-plugin-react-helmet',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
   ],
 }

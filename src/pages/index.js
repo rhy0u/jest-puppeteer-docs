@@ -1,19 +1,48 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import Img from 'gatsby-image'
+import { graphql } from 'gatsby'
+import { Box } from '@smooth-ui/core-sc'
+import ExternalLink from 'components/ExternalLink'
+import BaseLayout from 'components/layouts/BaseLayout'
 
-import Layout from '../components/layout'
-import Image from '../components/image'
+const IndexPage = ({ data }) => (
+  <BaseLayout>
+    <Box maxWidth={300} m="auto" pb={20}>
+      <Img
+        fluid={data.smoothUI.childImageSharp.fluid}
+        style={{ margin: 'auto' }}
+      />
+    </Box>
+    <Box>
+      Smooth UI is a style system / UI library for{' '}
+      <ExternalLink href="https://reactjs.org/">React</ExternalLink>. It works
+      with{' '}
+      <ExternalLink href="https://www.styled-components.com/">
+        Styled Components
+      </ExternalLink>{' '}
+      <span role="img" aria-label="styled-components">
+        💅
+      </span>{' '}
+      or <ExternalLink href="https://emotion.sh/">Emotion</ExternalLink>{' '}
+      <span role="img" aria-label="emotion">
+        👩‍🎤
+      </span>
+      .<br />
+    </Box>
 
-const IndexPage = () => (
-  <Layout>
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: '300px', marginBottom: '1.45rem' }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
+    <Box>
+      It is focused on developer experience, productivity. You can focus on what
+      you want to build instead of on how to build it.
+    </Box>
+  </BaseLayout>
 )
+
+export const query = graphql`
+  query {
+    smoothUI: file(relativePath: { eq: "smooth-ui-logo.png" }) {
+      ...optimizedPicture
+    }
+  }
+`
 
 export default IndexPage
