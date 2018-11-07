@@ -1,48 +1,93 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'SVGR',
+    github: 'https://github.com/smooth-code/svgr',
+    menu: ['About', 'Usage', 'Configuring SVGR', 'Advanced'],
+    nav: [
+      { title: 'Playground', url: '/playground' },
+      { title: 'Usage', url: '/docs' },
+    ],
   },
+  pathPrefix: `/open-source/svgr`,
   plugins: [
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages/`,
-      },
-    },
-    {
-      resolve: `gatsby-mdx`,
-      options: {
-        extensions: ['.mdx', '.md'],
-        defaultLayouts: {
-          default: require.resolve('./src/components/layout.js'),
-        },
-      },
-    },
+    // Relative import
+    'gatsby-plugin-resolve-src',
+
+    // Styled components
+    'gatsby-plugin-styled-components',
+
+    // Helmet
     'gatsby-plugin-react-helmet',
+
+    // Offline
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `images`,
+        name: 'SVGR',
+        short_name: 'svgr',
+        start_url: '/',
+        background_color: '#bd4932',
+        theme_color: '#bd4932',
+        display: 'minimal-ui',
+      },
+    },
+
+    // Pages
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: `${__dirname}/src/pages`,
+        ignore: [`**/docs/**`],
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'docs',
+        path: `${__dirname}/src/pages/docs`,
+      },
+    },
+    {
+      resolve: 'gatsby-mdx',
+      options: {
+        defaultLayouts: {
+          default: require.resolve('./src/components/SimpleLayout'),
+          docs: require.resolve('./src/components/DocLayout'),
+        },
+        gatsbyRemarkPlugins: [
+          { resolve: 'gatsby-remark-autolink-headers' },
+          {
+            resolve: 'gatsby-remark-highlights',
+            options: { scopePrefix: 'syntax--' },
+          },
+        ],
+      },
+    },
+
+    // Images
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
         path: `${__dirname}/src/images`,
       },
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+
+    // Fonts
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-web-font-loader',
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
-        start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
-        display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        custom: {
+          families: ['Colfax'],
+          url: 'https://www.smooth-code.com/assets/fonts.css',
+        },
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.app/offline
-    // 'gatsby-plugin-offline',
+
+    // Redirect
+    'gatsby-plugin-meta-redirect',
   ],
 }
