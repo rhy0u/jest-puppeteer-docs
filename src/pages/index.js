@@ -3,10 +3,9 @@ import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import { Box } from '@smooth-ui/core-sc'
 import ExternalLink from 'components/ExternalLink'
-import BaseLayout from 'components/layouts/BaseLayout'
 
 const IndexPage = ({ data }) => (
-  <BaseLayout>
+  <>
     <Box maxWidth={300} m="auto" pb={20}>
       <Img
         fluid={data.smoothUI.childImageSharp.fluid}
@@ -34,7 +33,7 @@ const IndexPage = ({ data }) => (
       It is focused on developer experience, productivity. You can focus on what
       you want to build instead of on how to build it.
     </Box>
-  </BaseLayout>
+  </>
 )
 
 export const query = graphql`

@@ -8,17 +8,6 @@ module.exports = {
       options: {
         name: `pages`,
         path: `${__dirname}/src/pages/`,
-        ignore: [`**/documentation/*`],
-        defaultLayouts: {
-          default: require.resolve('./src/components/layouts/BaseLayout.js'),
-        },
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `doc`,
-        path: `${__dirname}/src/pages/documentation`,
       },
     },
     {
@@ -29,13 +18,9 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-mdx`,
+      resolve: `gatsby-plugin-layout`,
       options: {
-        extensions: ['.mdx'],
-        defaultLayouts: {
-          default: require.resolve('./src/components/layouts/BaseLayout.js'),
-          doc: require.resolve('./src/components/layouts/DocLayout.js'),
-        },
+        component: require.resolve(`./src/components/Layout.js`),
       },
     },
     {
@@ -50,6 +35,7 @@ module.exports = {
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
+    'gatsby-mdx',
     'gatsby-transformer-remark',
     'gatsby-plugin-resolve-src',
     'gatsby-plugin-react-helmet',
