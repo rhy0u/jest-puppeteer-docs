@@ -6,8 +6,8 @@ import { ThemeProvider, Grid, Row, Col } from '@smooth-ui/core-sc'
 import theme from 'style/theme'
 import { Sticky, StickyContainer } from 'react-sticky'
 
-import Header from 'components/header'
-import SidebarMenu from 'components/SidebarMenu'
+import Header from 'components/Header'
+import SidebarMenu from 'components/sidebar/SidebarMenu'
 
 const Layout = ({ children, location }) => (
   <ThemeProvider theme={theme}>
@@ -17,14 +17,22 @@ const Layout = ({ children, location }) => (
           site {
             siteMetadata {
               title
+              menuLinks {
+                name
+                link
+              }
             }
           }
         }
       `}
-      render={data => (
+      render={({
+        site: {
+          siteMetadata: { title, menuLinks },
+        },
+      }) => (
         <>
-          <Helmet title={data.site.siteMetadata.title} />
-          <Header siteTitle={data.site.siteMetadata.title} />
+          <Helmet title={title} />
+          <Header siteTitle={title} menu={menuLinks} />
           {location && location.pathname.includes('documentation') ? (
             <StickyContainer>
               <Grid maxWidth="none">
@@ -37,6 +45,7 @@ const Layout = ({ children, location }) => (
                             ...style,
                             backgroundColor: 'lightgrey',
                             height: '100vh',
+                            overflow: 'scroll',
                           }}
                         >
                           <SidebarMenu />

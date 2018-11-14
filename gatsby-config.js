@@ -1,6 +1,24 @@
 module.exports = {
   siteMetadata: {
     title: 'SVGR',
+    menuLinks: [
+      {
+        name: 'About',
+        link: '/',
+      },
+      {
+        name: 'Playground',
+        link: '/playground',
+      },
+      {
+        name: 'Documentation',
+        link: '/documentation',
+      },
+      {
+        name: 'Github',
+        link: 'https://github.com/smooth-code/svgr',
+      },
+    ],
   },
   plugins: [
     {

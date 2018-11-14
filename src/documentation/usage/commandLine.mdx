@@ -5,6 +5,7 @@ subMenu: usage
 order: 6
 slug: command-line-usage
 ---
+
 # Command line usage
 
 ```
@@ -35,6 +36,7 @@ Options:
   Examples:
     svgr --replace-attr-values "#fff=currentColor" icon.svg
 ```
+
 ## Recipes
 
 ### Transform a whole directory
@@ -97,7 +99,7 @@ An example of template:
 function template(
   { template },
   opts,
-  { imports, componentName, props, jsx, exports },
+  { imports, componentName, props, jsx, exports }
 ) {
   return template.ast`
     ${imports}

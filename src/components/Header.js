@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from 'gatsby'
+// import { Link } from 'gatsby'
+import Link from 'components/Link'
 import { Box, Typography, styled } from '@smooth-ui/core-sc'
 
 const MenuContainer = styled(Box)`
@@ -13,7 +14,7 @@ const MenuContainer = styled(Box)`
   }
 `
 
-const Header = ({ siteTitle }) => (
+const Header = ({ siteTitle, menu }) => (
   <Box
     backgroundColor="#bd4932"
     display="flex"
@@ -34,22 +35,15 @@ const Header = ({ siteTitle }) => (
       </Link>
     </Typography>
     <MenuContainer>
-      <Link to="/playground" activeStyle={{ textDecoration: 'underline' }}>
-        Playground
-      </Link>
-      <Link to="/" activeStyle={{ textDecoration: 'underline' }}>
-        About
-      </Link>
-      <Link to="/documentation" activeStyle={{ textDecoration: 'underline' }}>
-        Docs
-      </Link>
-      <a
-        href="https://github.com/smooth-code/svgr"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Github
-      </a>
+      {menu.map((menuItem, index) => (
+        <Link
+          to={menuItem.link}
+          key={index}
+          activeStyle={{ textDecoration: 'underline' }}
+        >
+          {menuItem.name}
+        </Link>
+      ))}
     </MenuContainer>
   </Box>
 )

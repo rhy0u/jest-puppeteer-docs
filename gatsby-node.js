@@ -58,8 +58,6 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {
           // Data passed to context is available
           // in page queries as GraphQL variables.
-          //   slug: `${node.frontmatter.menu}/${node.parent.relativeDirectory &&
-          //     `${node.parent.relativeDirectory}/`}${node.fields.slug}`,
         },
       })
     })
