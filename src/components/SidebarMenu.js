@@ -11,37 +11,26 @@ const StyledLink = styled(Link)`
   color: ${th('black')};
 `
 
-const PrimaryLevelMenu = ({ title, item, toggled, onToggle }) => (
-  <Box display="flex" justifyContent="space-between" onClick={onToggle}>
-    <Box style={{ textTransform: 'uppercase' }}>{title}</Box>
-    {item.pages && (
-      <>
-        {toggled ? (
-          <ArrowUp style={{ flexShrink: 0 }} />
-        ) : (
-          <ArrowDown style={{ flexShrink: 0 }} />
-        )}
-      </>
-    )}
-  </Box>
-)
-
 const ItemWithSubmenu = ({ item }) => (
   <Toggler>
     {({ toggled, onToggle }) => (
       <Box mb={20}>
-        <PrimaryLevelMenu
-          title={item.subMenu}
-          item={item}
-          toggled={toggled}
-          onToggle={onToggle}
-        />
+        <Box display="flex" justifyContent="space-between" onClick={onToggle}>
+          <Box style={{ textTransform: 'uppercase' }}>{item.subMenu}</Box>
+          {item.pages && (
+            <>
+              {toggled ? (
+                <ArrowUp style={{ flexShrink: 0 }} />
+              ) : (
+                <ArrowDown style={{ flexShrink: 0 }} />
+              )}
+            </>
+          )}
+        </Box>
         {toggled &&
           item.pages.map((itemPage, index) => (
             <StyledLink
-              to={`${itemPage.parent.relativeDirectory}/${
-                itemPage.parent.name
-              }`}
+              to={itemPage.fields.slug}
               key={index}
               activeStyle={{ textDecoration: 'underline' }}
             >
@@ -59,16 +48,35 @@ const ItemWithoutSubmenu = ({ item }) => (
   <Toggler>
     {({ toggled, onToggle }) => (
       <Box mb={20}>
-        <PrimaryLevelMenu
-          title={item.pages.frontmatter.title}
-          item={item}
-          toggled={toggled}
-          onToggle={onToggle}
-        />
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          onClick={onToggle}
+          style={{ textTransform: 'uppercase' }}
+        >
+          {toggled && item.pages.tableOfContents.items[0].items ? (
+            <Box>{item.pages.frontmatter.title}</Box>
+          ) : (
+            <StyledLink to={item.pages.fields.slug}>
+              <Box>{item.pages.frontmatter.title}</Box>
+            </StyledLink>
+          )}
+
+          {item.pages.tableOfContents.items[0].items && (
+            <>
+              {toggled ? (
+                <ArrowUp style={{ flexShrink: 0 }} />
+              ) : (
+                <ArrowDown style={{ flexShrink: 0 }} />
+              )}
+            </>
+          )}
+        </Box>
         {toggled &&
+          item.pages.tableOfContents.items[0].items &&
           item.pages.tableOfContents.items[0].items.map((itemPage, index) => (
             <StyledLink
-              to={`${item.pages.parent.relativeDirectory}${itemPage.url}`}
+              to={item.pages.fields.slug}
               key={index}
               activeStyle={{ textDecoration: 'underline' }}
             >
@@ -123,7 +131,11 @@ const SidebarMenu = () => (
               tableOfContents
               frontmatter {
                 title
-                subMenu
+                slug
+                # subMenu
+              }
+              fields {
+                slug
               }
               parent {
                 ... on File {
@@ -141,6 +153,7 @@ const SidebarMenu = () => (
     `}
     render={data => {
       const orderedMenu = getOrderedMenu(data.allMdx.edges)
+      console.log(orderedMenu)
       return (
         <Box p="20px 10px" overflow="scroll">
           {orderedMenu.map((menuItem, index) => (

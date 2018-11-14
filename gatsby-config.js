@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Smooth UI',
+    title: 'SVGR',
   },
   plugins: [
     {
@@ -8,6 +8,13 @@ module.exports = {
       options: {
         name: `pages`,
         path: `${__dirname}/src/pages/`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `doc`,
+        path: `${__dirname}/src/documentation/`,
       },
     },
     {

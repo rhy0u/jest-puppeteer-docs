@@ -34,17 +34,17 @@ const Header = ({ siteTitle }) => (
       </Link>
     </Typography>
     <MenuContainer>
+      <Link to="/playground" activeStyle={{ textDecoration: 'underline' }}>
+        Playground
+      </Link>
       <Link to="/" activeStyle={{ textDecoration: 'underline' }}>
         About
-      </Link>
-      <Link to="/news" activeStyle={{ textDecoration: 'underline' }}>
-        Nouveautés
       </Link>
       <Link to="/documentation" activeStyle={{ textDecoration: 'underline' }}>
         Docs
       </Link>
       <a
-        href="https://github.com/smooth-code/smooth-ui"
+        href="https://github.com/smooth-code/svgr"
         target="_blank"
         rel="noopener noreferrer"
       >

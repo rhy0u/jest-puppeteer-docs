@@ -40,6 +40,7 @@
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
+    "deploy": "gatsby serve",
     "lint": "eslint .",
     "start": "npm run dev",
     "format": "prettier --write \"src/**/*.js\"",

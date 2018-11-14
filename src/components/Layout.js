@@ -25,7 +25,7 @@ const Layout = ({ children, location }) => (
         <>
           <Helmet title={data.site.siteMetadata.title} />
           <Header siteTitle={data.site.siteMetadata.title} />
-          {location.pathname.includes('documentation') ? (
+          {location && location.pathname.includes('documentation') ? (
             <StickyContainer>
               <Grid maxWidth="none">
                 <Row>
