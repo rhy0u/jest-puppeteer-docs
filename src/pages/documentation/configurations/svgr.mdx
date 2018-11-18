@@ -1,0 +1,47 @@
+---
+title: SVGR
+menu: Configurations
+subMenu: SVGR
+order: 60
+---
+
+# SVGR
+
+SVGR uses [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) for configuration file support. This means you can configure SVGR via:
+
+- A `.svgrrc` file, written in YAML or JSON, with optional extensions: .yaml/.yml/.json/.js.
+- A `svgr.config.js` file that exports an object.
+- A "svgr" key in your package.json file.
+
+The configuration file will be resolved starting from the location of the file being formatted, and searching up the file tree until a config file is (or isn't) found.
+
+The options to the configuration file are the same as the API options.
+
+## Example
+
+JSON:
+
+```json
+{
+  "icon": true,
+  "expandProps": false
+}
+```
+
+JS:
+
+```js
+// .svgrrc.js
+module.exports = {
+  icon: true,
+  expandProps: false,
+}
+```
+
+YAML:
+
+```yml
+# .svgrrc
+icon: true
+expandProps: false
+```

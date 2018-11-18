@@ -1,3 +1,5 @@
+const path = require(`path`)
+
 module.exports = {
   plugins: [
     {
@@ -11,7 +13,14 @@ module.exports = {
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-        component: require.resolve(`./src/layout/`),
+        component: require.resolve(`./src/layouts/`),
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`),
       },
     },
     {
@@ -25,11 +34,33 @@ module.exports = {
         display: 'minimal-ui',
       },
     },
-    'gatsby-mdx',
-    'gatsby-transformer-remark',
+    {
+      resolve: `gatsby-mdx`,
+      options: {
+        gatsbyRemarkPlugins: [
+          {
+            resolve: 'gatsby-remark-autolink-headers',
+            options: {
+              offsetY: `100`,
+              icon: null,
+              className: null,
+              maintainCase: false,
+            },
+          },
+        ],
+      },
+    },
     'gatsby-plugin-resolve-src',
-    'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        custom: {
+          families: ['Colfax'],
+          url: 'https://www.smooth-code.com/assets/fonts.css',
+        },
+      },
+    },
   ],
 }

@@ -6,9 +6,9 @@ const NavContext = React.createContext()
 const getMdxDetails = mdxNode => {
   const cleanPath = `/${mdxNode.parent.relativePath.slice(0, -4)}`
   return {
+    tableOfContents: mdxNode.tableOfContents,
     ...mdxNode.frontmatter,
     path: cleanPath,
-    project: mdxNode.parent.relativePath.split('/')[1],
   }
 }
 
@@ -17,12 +17,10 @@ const getJSDetails = (jsNode, allJavascriptFrontmatter) => {
   const matchedFrontmatterEdge = allJavascriptFrontmatter.edges.find(
     edge => edge.node.node.absolutePath === jsNode.componentPath
   )
-  console.log(cleanPath)
   return {
     ...((matchedFrontmatterEdge && matchedFrontmatterEdge.node.frontmatter) ||
       {}),
-    path: cleanPath,
-    project: cleanPath.split('/')[1],
+    path: cleanPath || '/',
   }
 }
 
@@ -39,9 +37,8 @@ const getNavData = (graphqlData, pagePath) => {
     .sort((pageA, pageB) => pageA.order - pageB.order)
   const activePage = pages.find(page => page.path === activePath)
   const navData = {
-    activeProject: activePage.project,
-    activeMenu: activePage.menu,
-    activeSubmenu: activePage.subMenu,
+    activeMenu: activePage && activePage.menu,
+    activeSubmenu: activePage && activePage.subMenu,
     activePage,
     pages,
   }
@@ -55,6 +52,7 @@ const NavContextProvider = props => (
         allMdx {
           edges {
             node {
+              tableOfContents
               frontmatter {
                 title
                 menu
@@ -86,8 +84,6 @@ const NavContextProvider = props => (
             node {
               frontmatter {
                 title
-                menu
-                order
               }
               node {
                 absolutePath
@@ -97,11 +93,14 @@ const NavContextProvider = props => (
         }
       }
     `}
-    render={data => (
-      <NavContext.Provider value={getNavData(data, props.pagePath)}>
-        {props.children}
-      </NavContext.Provider>
-    )}
+    render={data => {
+      const navData = getNavData(data, props.pagePath)
+      return (
+        <NavContext.Provider value={navData}>
+          {props.children(navData)}
+        </NavContext.Provider>
+      )
+    }}
   />
 )
 

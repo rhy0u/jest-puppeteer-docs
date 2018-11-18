@@ -4,7 +4,6 @@ const About = () => <div>About</div>
 
 export const frontmatter = {
   title: 'About',
-  menu: 'About',
   order: -1,
 }
 
