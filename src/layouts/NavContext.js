@@ -67,11 +67,7 @@ const NavContextProvider = props => (
             }
           }
         }
-        allSitePage(
-          filter: {
-            pluginCreator: { name: { eq: "gatsby-plugin-page-creator" } }
-          }
-        ) {
+        allSitePage {
           edges {
             node {
               path

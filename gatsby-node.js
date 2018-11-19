@@ -4,11 +4,12 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions
-  if (node.internal.type === `Mdx`) {
-    createNodeField({
-      node,
-    })
-  }
-}
+// exports.onCreateNode = ({ node, actions }) => {
+//   const { createNodeField } = actions
+//   if (node.internal.type === `Mdx`) {
+//     console.log(node)
+//     createNodeField({
+//       node,
+//     })
+//   }
+// }

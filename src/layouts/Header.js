@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@smooth-ui/core-em'
+import { Box } from '@smooth-ui/core-sc'
 import fakeHeader from 'images/fakeheader.png'
 
 const Header = () => (

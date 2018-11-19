@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, styled } from '@smooth-ui/core-em'
+import { Box, styled } from '@smooth-ui/core-sc'
 import svgrLogo from 'images/svgr-logo.png'
 import githubLogo from 'images/GitHub-Mark-32px.png'
 import Link from 'components/Link'

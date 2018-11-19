@@ -1,4 +1,4 @@
-import { Box, styled, th } from '@smooth-ui/core-em'
+import { Box, styled, th } from '@smooth-ui/core-sc'
 
 const StyledMenu = styled(Box)`
   text-decoration: none;

@@ -1,6 +1,6 @@
 import React from 'react'
-import { Box } from '@smooth-ui/core-em'
 import Link from 'gatsby-link'
+import { Box } from '@smooth-ui/core-sc'
 
 import H2Anchor from './H2Anchor'
 import H3Anchor from './H3Anchor'

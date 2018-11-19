@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box } from '@smooth-ui/core-em'
+import { Box } from '@smooth-ui/core-sc'
 import { Link } from 'gatsby'
 
 import { withNav } from '../NavContext'

@@ -1,10 +1,7 @@
 import React from 'react'
-import { Box } from '@smooth-ui/core-em'
-import { ThemeProvider } from '@smooth-ui/core-sc'
+import { Box, ThemeProvider } from '@smooth-ui/core-sc'
 import theme from 'style/theme'
 import { Helmet } from 'react-helmet'
-
-import './index.css'
 
 // Layout parts
 import NavContext from './NavContext'

@@ -1,4 +1,4 @@
-import { Box, styled, th } from '@smooth-ui/core-em'
+import { Box, styled, th } from '@smooth-ui/core-sc'
 
 const H2Anchor = styled(Box)`
   text-decoration: none;
