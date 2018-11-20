@@ -1,30 +1,19 @@
-const path = require(`path`)
-
 module.exports = {
+  siteMetadata: {
+    title: 'SVGR',
+    github: 'https://github.com/smooth-code/svgr',
+  },
   plugins: [
+    // Relative import
+    'gatsby-plugin-resolve-src',
+
+    // Styled components
     'gatsby-plugin-styled-components',
+
+    // Helmet
     'gatsby-plugin-react-helmet',
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages/`,
-      },
-    },
-    'gatsby-transformer-javascript-frontmatter',
-    // {
-    //   resolve: `gatsby-plugin-layout`,
-    //   options: {
-    //     component: require.resolve(`./src/layouts/`),
-    //   },
-    // },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `images`,
-    //     path: path.join(__dirname, `src`, `images`),
-    //   },
-    // },
+
+    // Offline
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -36,36 +25,49 @@ module.exports = {
         display: 'minimal-ui',
       },
     },
+
+    // Pages
     {
-      resolve: `gatsby-mdx`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        defaultLayouts: {
-          default: require.resolve('./src/components/Layout'),
-        },
-        // gatsbyRemarkPlugins: [
-        //   {
-        //     resolve: 'gatsby-remark-autolink-headers',
-        //     options: {
-        //       offsetY: `100`,
-        //       icon: null,
-        //       className: null,
-        //       maintainCase: false,
-        //     },
-        //   },
-        // ],
+        name: 'pages',
+        path: `${__dirname}/src/pages`,
+        ignore: [`**/docs/**`],
       },
     },
-    'gatsby-plugin-resolve-src',
-    // 'gatsby-transformer-sharp',
-    // 'gatsby-plugin-sharp',
-    // {
-    //   resolve: 'gatsby-plugin-web-font-loader',
-    //   options: {
-    //     custom: {
-    //       families: ['Colfax'],
-    //       url: 'https://www.smooth-code.com/assets/fonts.css',
-    //     },
-    //   },
-    // },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'docs',
+        path: `${__dirname}/src/pages/docs`,
+      },
+    },
+    {
+      resolve: 'gatsby-mdx',
+      options: {
+        defaultLayouts: {
+          default: require.resolve('./src/components/SimpleLayout'),
+          docs: require.resolve('./src/components/DocLayout'),
+        },
+        gatsbyRemarkPlugins: [
+          { resolve: 'gatsby-remark-autolink-headers' },
+          {
+            resolve: 'gatsby-remark-highlights',
+            options: { scopePrefix: 'syntax--' },
+          },
+        ],
+      },
+    },
+
+    // Images
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images`,
+      },
+    },
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
   ],
 }
