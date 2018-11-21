@@ -20,6 +20,7 @@ const SettingsContainer = styled.div`
     css`
       width: 200px;
       height: 100%;
+      max-height: 100%;
     `
   )}
 `
