@@ -128,6 +128,9 @@ const ProjectHeader = () => (
             <Nav>
               <NavList>
                 <NavListItem>
+                  <Link to="/playground">Playground</Link>
+                </NavListItem>
+                <NavListItem>
                   <Link to="/docs">Usage</Link>
                 </NavListItem>
                 <NavListItem>

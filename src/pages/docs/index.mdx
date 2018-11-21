@@ -5,6 +5,30 @@ menu: Introduction
 
 # Title of the page
 
+import Interactive from 'components/Interactive'
+import { Box } from '@smooth-ui/core-sc'
+
+<Interactive
+  scope={{ Box }}
+  component={`
+  <Box
+    p={10}
+    display="flex"
+    justifyContent="space-between"
+    backgroundColor="#bd4932"
+  >
+    <Box p={20} backgroundColor="white">
+      Left
+    </Box>
+    <Box p={20} backgroundColor="white">
+      Middle
+    </Box>
+    <Box p={20} backgroundColor="white">
+      Right
+    </Box>
+  </Box>`}
+/>
+
 ## Subtitle
 
 Intro paragraph

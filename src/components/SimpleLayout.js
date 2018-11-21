@@ -7,7 +7,7 @@ import GlobalStyle from './GlobalStyle'
 
 const Headers = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 10;
   width: 100%;
   top: 0;
   left: 0;
