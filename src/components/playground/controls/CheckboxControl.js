@@ -5,7 +5,9 @@ import { Checkbox } from '@smooth-ui/core-sc'
 const CheckboxControl = props => (
   <Field
     type="checkbox"
-    render={({ input, ...props }) => <Checkbox {...input} {...props} />}
+    render={({ input: { value, ...inputProps }, ...props }) => (
+      <Checkbox {...inputProps} {...props} />
+    )}
     {...props}
   />
 )

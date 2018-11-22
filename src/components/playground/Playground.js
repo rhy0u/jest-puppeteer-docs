@@ -5,6 +5,7 @@ import Settings from 'components/playground/Settings'
 import svgr from 'components/playground/modules/svgr'
 import defaultSvg from 'components/playground/defaultSVG'
 import DropArea from 'components/playground/DropArea'
+import Loading from 'components/playground/Loading'
 import {
   settings,
   getInitialState,
@@ -140,7 +141,7 @@ class Playground extends React.Component {
               </Box>
             </PlaygroundEditors>
           ) : (
-            <div>Loading...</div>
+            <Loading />
           )}
         </PlaygroundContainer>
       </>
