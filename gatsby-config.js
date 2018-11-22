@@ -89,5 +89,13 @@ module.exports = {
 
     // Redirect
     'gatsby-plugin-meta-redirect',
+
+    // Robots
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        policy: [{ userAgent: '*', disallow: '/' }],
+      },
+    },
   ],
 }
