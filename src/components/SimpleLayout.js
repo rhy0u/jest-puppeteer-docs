@@ -4,6 +4,7 @@ import theme from 'style/theme'
 import WebsiteHeader from './WebsiteHeader'
 import ProjectHeader from './ProjectHeader'
 import GlobalStyle from './GlobalStyle'
+import Head from './Head'
 
 const Headers = styled.div`
   position: fixed;
@@ -19,10 +20,11 @@ const PageWrapper = styled.div`
   min-height: calc(100vh - ${th('headerHeight')});
 `
 
-const SimpleLayout = ({ children }) => (
+const SimpleLayout = ({ children, pageContext }) => (
   <ThemeProvider theme={theme}>
     <div>
       <GlobalStyle />
+      <Head pageContext={pageContext} />
       <Headers>
         <WebsiteHeader />
         <ProjectHeader />

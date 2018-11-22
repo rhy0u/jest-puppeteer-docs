@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid, ThemeProvider, styled, up, css, th } from '@smooth-ui/core-sc'
+import { graphql } from 'gatsby'
 import theme from 'style/theme'
 import Sidebar from './Sidebar'
 import WebsiteHeader from './WebsiteHeader'
@@ -10,6 +11,7 @@ import {
   Provider as MenuProvider,
   Consumer as MenuConsumer,
 } from './MenuContext'
+import Head from './Head'
 
 const PageWrapper = styled.div`
   display: flex;
@@ -80,11 +82,12 @@ const ArticleContainer = styled.div`
   overflow: hidden;
 `
 
-const DocLayout = ({ children }) => (
+const DocLayout = ({ children, pageContext }) => (
   <ThemeProvider theme={theme}>
     <MenuProvider>
       <div>
         <GlobalStyle />
+        <Head pageContext={pageContext} />
         <Headers>
           <WebsiteHeader />
           <ProjectHeader />
@@ -109,5 +112,15 @@ const DocLayout = ({ children }) => (
     </MenuProvider>
   </ThemeProvider>
 )
+
+export const query = graphql`
+  query TemplateQuery {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`
 
 export default DocLayout
