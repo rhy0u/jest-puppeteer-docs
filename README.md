@@ -1,6 +1,4 @@
-<h1 align="center">SVGR documentation website</h1>
-
----
+# SVGR documentation website
 
 [Documentation site](https://www.smooth-code.com/open-source/svgr/) for [svgr](https://github.com/smooth-code/svgr). `svgr-docs` is running on [gatsbyjs](gatsbyjs.org).
 

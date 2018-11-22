@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, styled } from '@smooth-ui/core-sc'
+import { Grid } from '@smooth-ui/core-sc'
 import Article from './Article'
 
 const NotFound = () => (
