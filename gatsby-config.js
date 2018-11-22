@@ -99,5 +99,13 @@ module.exports = {
         policy: [{ userAgent: '*', disallow: '/' }],
       },
     },
+
+    // Analytics
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-101358560-1',
+      },
+    },
   ],
 }
