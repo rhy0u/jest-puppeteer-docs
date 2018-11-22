@@ -42,6 +42,7 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "build:pp": "PREFIX_PATHS=1 gatsby build --prefix-paths",
     "dev": "gatsby develop",
     "deploy": "gatsby serve",
     "lint": "eslint .",

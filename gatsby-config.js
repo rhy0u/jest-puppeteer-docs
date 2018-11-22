@@ -1,14 +1,18 @@
+const PREFIX_PATHS = Boolean(process.env.PREFIX_PATHS)
+const PATH_PREFIX = `/open-source/svgr`
+const resolvePath = path => (PREFIX_PATHS ? `${PATH_PREFIX}${path}` : path)
+
 module.exports = {
   siteMetadata: {
     title: 'SVGR',
     github: 'https://github.com/smooth-code/svgr',
     menu: ['About', 'Usage', 'Configuring SVGR', 'Advanced'],
     nav: [
-      { title: 'Playground', url: '/playground' },
-      { title: 'Usage', url: '/docs' },
+      { title: 'Playground', url: resolvePath('/playground') },
+      { title: 'Usage', url: resolvePath('/docs') },
     ],
   },
-  pathPrefix: `/open-source/svgr`,
+  pathPrefix: PATH_PREFIX,
   plugins: [
     // Relative import
     'gatsby-plugin-resolve-src',
