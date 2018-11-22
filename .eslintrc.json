@@ -3,5 +3,8 @@
   "extends": ["smooth", "smooth/react", "smooth/project"],
   "rules": {
     "react/destructuring-assignment": "off"
+  },
+  "env": {
+    "browser": true
   }
 }

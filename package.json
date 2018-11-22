@@ -44,12 +44,9 @@
     "build": "gatsby build",
     "build:pp": "gatsby build --prefix-paths",
     "dev": "gatsby develop",
-    "deploy": "gatsby serve",
+    "serve": "gatsby serve",
     "lint": "eslint .",
-    "start": "npm run dev",
-    "format": "prettier --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:icons": "npx @svgr/cli -d src/components/icons --icon --replace-attr-values \"#bd4932=currentColor\" src/images/svgs"
+    "format": "prettier --write \"**/*\" "
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
