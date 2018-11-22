@@ -1,6 +1,6 @@
-# SVGR documentation website
+# Jest-Puppeteer documentation website
 
-[Documentation site](https://www.smooth-code.com/open-source/svgr/) for [svgr](https://github.com/smooth-code/svgr). `svgr-docs` is running on [gatsbyjs](gatsbyjs.org).
+[Documentation site](https://www.smooth-code.com/open-source/jest-puppeteer/) for [jest-puppeteer](https://github.com/smooth-code/jest-puppeteer). `jest-puppeteer-docs` is running on [gatsbyjs](gatsbyjs.org).
 
 ## Getting Started
 
