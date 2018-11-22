@@ -4,8 +4,8 @@ module.exports = {
     github: 'https://github.com/smooth-code/svgr',
     menu: ['About', 'Usage', 'Configuring SVGR', 'Advanced'],
     nav: [
-      { title: 'Playground', url: '/playground' },
-      { title: 'Usage', url: '/docs' },
+      { title: 'Playground', url: '/playground/' },
+      { title: 'Usage', url: '/docs/' },
     ],
   },
   pathPrefix: `/open-source/svgr`,
