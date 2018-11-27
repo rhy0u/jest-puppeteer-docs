@@ -1,14 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: 'SVGR',
-    github: 'https://github.com/smooth-code/svgr',
-    menu: ['About', 'Usage', 'Configuring SVGR', 'Advanced'],
-    nav: [
-      { title: 'Playground', url: '/playground/' },
-      { title: 'Usage', url: '/docs/' },
-    ],
+    title: 'Jest-Puppeteer',
+    github: 'https://github.com/smooth-code/jest-puppeteer',
+    menu: ['About', 'Usage'],
+    nav: [{ title: 'Usage', url: '/docs/' }],
   },
-  pathPrefix: `/open-source/svgr`,
+  pathPrefix: `/open-source/jest-puppeteer`,
   plugins: [
     // Relative import
     'gatsby-plugin-resolve-src',
@@ -23,8 +20,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'SVGR',
-        short_name: 'svgr',
+        name: 'Jest-Puppeteer',
+        short_name: 'jest-puppeteer',
         start_url: '/',
         background_color: '#bd4932',
         theme_color: '#bd4932',

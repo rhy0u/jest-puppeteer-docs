@@ -41,7 +41,13 @@ const HomeHero = () => (
           alt={data.site.siteMetadata.title}
           style={{ margin: '0 auto' }}
         />
-        <Title>Transform SVGs into React components.</Title>
+        <Title>
+          Run your tests using Jest & Puppeteer{' '}
+          <span role="img" aria-label="emojis">
+            🎪✨
+          </span>
+          .
+        </Title>
       </Container>
     )}
   />

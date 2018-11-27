@@ -6,60 +6,47 @@ order: 5
 
 # Getting Started
 
-Follow these steps to start with SVGR.
-
-**Take an icon.svg**:
-
-```html
-<?xml version="1.0" encoding="UTF-8"?>
-<svg
-  width="48px"
-  height="1px"
-  viewBox="0 0 48 1"
-  version="1.1"
-  xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
->
-  <!-- Generator: Sketch 46.2 (44496) - http://www.bohemiancoding.com/sketch -->
-  <title>Rectangle 5</title>
-  <desc>Created with Sketch.</desc>
-  <defs></defs>
-  <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-    <g
-      id="19-Separator"
-      transform="translate(-129.000000, -156.000000)"
-      fill="#063855"
-    >
-      <g id="Controls/Settings" transform="translate(80.000000, 0.000000)">
-        <g id="Content" transform="translate(0.000000, 64.000000)">
-          <g id="Group" transform="translate(24.000000, 56.000000)">
-            <g id="Group-2">
-              <rect id="Rectangle-5" x="25" y="36" width="48" height="1"></rect>
-            </g>
-          </g>
-        </g>
-      </g>
-    </g>
-  </g>
-</svg>
+```
+npm install --save-dev jest-puppeteer puppeteer jest
 ```
 
-**Run SVGR**
+> Requires Jest v22+
+> TypeScript users should additionally install `@types/puppeteer`, `@types/jest-environment-puppeteer` and `@types/expect-puppeteer`
 
-```sh
-npx @svgr/cli --icon --replace-attr-values "#063855=currentColor" icon.svg
+Update your Jest configuration:
+
+```json
+{
+  "preset": "jest-puppeteer"
+}
 ```
 
-**Output**
+Use Puppeteer in your tests:
 
 ```js
-import React from 'react'
+describe('Google', () => {
+  beforeAll(async () => {
+    await page.goto('https://google.com')
+  })
 
-const SvgComponent = props => (
-  <svg width="1em" height="1em" viewBox="0 0 48 1" {...props}>
-    <path d="M0 0h48v1H0z" fill="currentColor" fillRule="evenodd" />
-  </svg>
-)
+  it('should display "google" text on page', async () => {
+    await expect(page).toMatch('google')
+  })
+})
+```
 
-export default SvgComponent
+## Running puppeteer in CI environments
+
+Most continuous integration platforms limit the number of threads one can use. If you have more than one test suite running puppeteer chances are that your test will timeout. This is because jest will try to run puppeteer in parallel and the CI platform won't be able to handle all the parallel jobs in time. A fix to this is to run your test serially when in a CI environment. Users have discovered that [running test serially in such environments can render up to 50%](https://jestjs.io/docs/en/troubleshooting#tests-are-extremely-slow-on-docker-and-or-continuous-integration-ci-server) of performance gains.
+
+This can be achieved through the CLI by running:
+
+```sh
+jest --runInBand
+```
+
+Alternatively, you can set jest to use as a max number of workers the amount that your CI environment supports:
+
+```
+jest --maxWorkers=2
 ```
